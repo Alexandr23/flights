@@ -1,0 +1,117 @@
+.flightCard {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.flightCard + .flightCard {
+  margin-top: 20px;
+}
+
+.flightCard_selected {
+  background-color: #ffe4e8;
+}
+
+.header {
+  padding: 0 20px;
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.airline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: #666666;
+}
+
+.airlineLogo {
+  display: flex;
+}
+
+.airlineLogo svg {
+  width: 30px;
+  height: 30px;
+}
+
+.body {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+}
+
+.location {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.location_right {
+  align-items: flex-end;
+}
+
+.location_right .airport {
+  text-align: right;
+}
+
+.datetime {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.airport {
+  margin-top: 5px;
+}
+
+.route {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.duration {
+  font-size: 15px;
+  margin-top: 10px;
+  color: #666666;
+}
+
+.track {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #cecece;
+  margin-top: 10px;
+}
+
+.track:before,
+.track:after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #cecece;
+}
+
+.track:before {
+  left: 0;
+}
+
+.track:after {
+  right: 0;
+}
