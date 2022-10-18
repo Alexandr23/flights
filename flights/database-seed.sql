@@ -4,18 +4,18 @@ CREATE TABLE airports (
     iata TEXT NOT NULL
 );
 
-CREATE TABLE airlines (id SERIAL PRIMARY KEY, name text);
+CREATE TABLE airlines (id SERIAL PRIMARY KEY, name TEXT NOT NULL);
 
 CREATE TABLE flights (
     id SERIAL,
     flight_number TEXT NOT NULL,
-    airline_id INT REFERENCES airlines,
-    departure_at TIMESTAMP WITH TIME ZONE,
-    departure_city text NOT NULL,
-    departure_airport_id INT REFERENCES airports,
-    arrival_at TIMESTAMP WITH TIME ZONE,
-    arrival_city text NOT NULL,
-    arrival_airport_id INT REFERENCES airports
+    airline_id INT REFERENCES airlines NOT NULL,
+    departure_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    departure_city TEXT NOT NULL,
+    departure_airport_id INT REFERENCES airports NOT NULL,
+    arrival_at TIMESTAMP WITH TIME ZONE NOT NULL,
+    arrival_city TEXT NOT NULL,
+    arrival_airport_id INT REFERENCES airports NOT NULL
 );
 
 INSERT INTO
