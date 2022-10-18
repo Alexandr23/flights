@@ -2,6 +2,8 @@ const request = require("request");
 const express = require("express");
 const cors = require("cors");
 
+const getPaginationFromRequest = require("./utils/getPaginationFromRequest");
+
 require("dotenv").config();
 
 const port = process.env.PORT;
@@ -15,8 +17,8 @@ const runApp = async () => {
   app.use(cors());
 
   app.get("/flights", async (req, res) => {
-    const proxy = request(flightsUrl);
-
+    const { page, limit } = getPaginationFromRequest(req);
+    const proxy = request(`${flightsUrl}?page=${page}&limit=${limit}`);
     req.pipe(proxy).pipe(res);
   });
 

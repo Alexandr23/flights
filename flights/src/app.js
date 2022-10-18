@@ -1,5 +1,6 @@
 const express = require("express");
 
+const getPaginationFromRequest = require("./utils/getPaginationFromRequest");
 const Airline = require("./models/Airline");
 const Airport = require("./models/Airport");
 const Flight = require("./models/Flight");
@@ -13,6 +14,9 @@ const runApp = () => {
 
   app.get("/flights", async (req, res) => {
     try {
+      const { page, limit } = getPaginationFromRequest(req);
+      const offset = (page - 1) * limit;
+
       const results = await Flight.findAll({
         include: [
           { model: Airline, foreignKey: "airline_id" },
@@ -27,6 +31,8 @@ const runApp = () => {
             as: "arrival_airport",
           },
         ],
+        limit,
+        offset,
       });
 
       res.setHeader("Content-Type", "application/json");
