@@ -24,6 +24,9 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
     flight.arrival.arrivalAt
   );
 
+  const departureAirport = `${flight.departure.city} (${flight.departure.airport.iata})`;
+  const arrivalAirport = `${flight.arrival.city} (${flight.arrival.airport.iata})`;
+
   const AirlineLogo =
     flight.airline.name === "Emirates" ? AirlineEmirates : AirlineGeneric;
 
@@ -59,8 +62,8 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
       <div className={classes.body}>
         <div className={classes.location}>
           <div className={classes.datetime}>{departureAt}</div>
-          <div className={classes.airport}>
-            {flight.departure.city} ({flight.departure.airport.iata})
+          <div className={classes.airport} title={departureAirport}>
+            {departureAirport}
           </div>
         </div>
 
@@ -71,8 +74,8 @@ export const FlightCard: React.FC<FlightCardProps> = ({ flight }) => {
 
         <div className={`${classes.location} ${classes.location_right}`}>
           <div className={classes.datetime}>{arrivalAt}</div>
-          <div className={classes.airport}>
-            {flight.arrival.city} ({flight.arrival.airport.iata})
+          <div className={classes.airport} title={arrivalAirport}>
+            {arrivalAirport}
           </div>
         </div>
       </div>

@@ -56,6 +56,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-shrink: 0;
+  width: 30%;
 }
 
 .location_right {
@@ -72,6 +74,9 @@
 }
 
 .airport {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: 5px;
 }
 
@@ -114,4 +119,12 @@
 
 .track:after {
   right: 0;
+}
+
+/* MOBILE */
+
+@media only screen and (max-width: 480px) {
+  .datetime {
+    font-size: 24px;
+  }
 }
