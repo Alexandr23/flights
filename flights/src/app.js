@@ -1,6 +1,8 @@
 const express = require("express");
 
 const getPaginationFromRequest = require("./utils/getPaginationFromRequest");
+const tryCatch = require("./utils/tryCatch");
+const errorHandler = require("./middleware/errorHandler");
 const Airline = require("./models/Airline");
 const Airport = require("./models/Airport");
 const Flight = require("./models/Flight");
@@ -12,8 +14,9 @@ const port = process.env.PORT;
 const runApp = () => {
   const app = express();
 
-  app.get("/flights", async (req, res) => {
-    try {
+  app.get(
+    "/flights",
+    tryCatch(async (req, res) => {
       const { page, limit } = getPaginationFromRequest(req);
       const offset = (page - 1) * limit;
 
@@ -38,12 +41,10 @@ const runApp = () => {
       res.setHeader("Content-Type", "application/json");
       res.status(200);
       res.send(JSON.stringify(results));
-    } catch (error) {
-      res.setHeader("Content-Type", "application/json");
-      res.status(500);
-      res.send(JSON.stringify({ error: "Something went wrong" }));
-    }
-  });
+    })
+  );
+
+  app.use(errorHandler);
 
   app.listen(port, () => {
     console.log(`Flights listening at http://localhost:${port}`);
