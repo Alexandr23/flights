@@ -16,6 +16,8 @@ services:
     build: ./flights
     depends_on:
       - postgres
+    volumes:
+      - ./flights:/usr/src/flights
 
   orchestrator:
     build: ./orchestrator
@@ -23,6 +25,8 @@ services:
       - flights
     ports:
       - "8080:8080"
+    volumes:
+      - ./orchestrator:/usr/src/orchestrator
 
   web:
     build: ./web
