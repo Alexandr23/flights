@@ -16,7 +16,17 @@ const runApp = async () => {
 
   app.use(cors());
 
+  app.get("/api/flights", async (req, res) => {
+    console.log("/api/flights");
+
+    const { page, limit } = getPaginationFromRequest(req);
+    const proxy = request(`${flightsUrl}?page=${page}&limit=${limit}`);
+    req.pipe(proxy).pipe(res);
+  });
+
   app.get("/flights", async (req, res) => {
+    console.log("/flights");
+
     const { page, limit } = getPaginationFromRequest(req);
     const proxy = request(`${flightsUrl}?page=${page}&limit=${limit}`);
     req.pipe(proxy).pipe(res);
